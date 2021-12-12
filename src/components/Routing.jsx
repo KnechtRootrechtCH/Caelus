@@ -4,7 +4,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 class Routing extends React.Component {
   render() {
-    if (this.context.authentication.authenticated) {
+    if (this.context.authentication.isAuthenticated) {
       return (
         <h1>Hello, {this.context.authentication.user.displayName}</h1>
       );

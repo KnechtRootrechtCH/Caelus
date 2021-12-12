@@ -38,7 +38,7 @@ export class AuthenticationStore {
     return this.user !== null ? this.user.uid : null;
   }
 
-  get authenticated() {
+  get isAuthenticated() {
     return this.uid !== null
   }
 }

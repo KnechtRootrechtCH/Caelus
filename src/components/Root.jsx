@@ -28,7 +28,7 @@ const Root = observer (
             <CssBaseline />
             <Header />
             <Navigation />
-            <Container>
+            <Container component="main">
               <Routing />
             </Container>
           </ThemeProvider>

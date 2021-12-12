@@ -5,7 +5,9 @@ import { ThemeStore } from "./ThemeStore";
 import { fire } from '../config/firebase';
 
 export class RootStore {
-  drawer = false;
+  drawer = true;
+  drawerMobile = false;
+  drawerWidth = 240;
 
   constructor() {
     makeAutoObservable(this, { rootStore: false });
@@ -15,16 +17,19 @@ export class RootStore {
   }
 
   toggleDrawer() {
-    console.debug('RootStore.toggleDrawer');
-    this.setDrawer(!this.drawer);
+    this.drawer = !this.drawer;
+  }
+
+  toggleDrawerMobile() {
+    this.drawerMobile = !this.drawerMobile;
   }
 
   setDrawer(state) {
-    console.debug('RootStore.setDrawer', state);
-    if (state === this.drawer) {
-      return;
-    }
     this.drawer = state;
+  }
+
+  setDrawerMobile(state) {
+    this.drawerMobile = state;
   }
 }
 

@@ -16,36 +16,40 @@ const Navigation = observer (
     render() {
         return (
           <React.Fragment>
-            <Drawer
-              sx={{ display: { md: 'block', xs: 'none' } }}
-              variant="persistent"
-              open={this.context.drawer}
-              hideBackdrop={true}
-              onClose={() => this.context.setDrawer(false)}
-              >
-              <Toolbar
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'flex-end',
-                  px: [1],
-                }}
-              >
-                <IconButton onClick={() => this.context.toggleDrawer()}>
-                  <ChevronLeftIcon />
-                </IconButton>
-              </Toolbar>
-              <NavigationMenu />
-            </Drawer>
-            <SwipeableDrawer
-              sx={{ display: { md: 'none', xs: 'block' } }}
-              variant="temporary"
-              open={this.context.drawer}
-              onOpen={() => this.context.setDrawer(true)}
-              onClose={() => this.context.setDrawer(false)}
-              >
-              <NavigationMenu />
-            </SwipeableDrawer>
+            { this.context.authentication.isAuthenticated &&
+              <React.Fragment>
+                <Drawer
+                  sx={{ display: { md: 'block', xs: 'none' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: this.context.drawerWidth } }}
+                  variant="persistent"
+                  open={this.context.drawer}
+                  hideBackdrop={true}
+                  onClose={() => this.context.setDrawer(false)}
+                  >
+                  <Toolbar
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'flex-end',
+                      px: [1],
+                    }}
+                  >
+                    <IconButton onClick={() => this.context.toggleDrawer()}>
+                      <ChevronLeftIcon />
+                    </IconButton>
+                  </Toolbar>
+                  <NavigationMenu />
+                </Drawer>
+                <SwipeableDrawer
+                  sx={{ display: { md: 'none', xs: 'block' } }}
+                  variant="temporary"
+                  open={this.context.drawerMobile}
+                  onOpen={() => this.context.setDrawerMobile(true)}
+                  onClose={() => this.context.setDrawerMobile(false)}
+                  >
+                  <NavigationMenu />
+                </SwipeableDrawer>
+              </React.Fragment>
+            }
           </React.Fragment>
         )
     }

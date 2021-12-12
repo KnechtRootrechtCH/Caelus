@@ -24,8 +24,18 @@ const Header = observer (
                   edge="start"
                   color="inherit"
                   aria-label="menu"
-                  sx={{ mr: 2 }}
+                  sx={{ mr: 2, display: { md: 'flex', xs: 'none' } }}
                   onClick={() => this.context.toggleDrawer()}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <IconButton
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  sx={{ mr: 2, display: { md: 'none', xs: 'flex' } }}
+                  onClick={() => this.context.toggleDrawerMobile()}
                 >
                   <MenuIcon />
                 </IconButton>
