@@ -2,7 +2,7 @@ import React from 'react';
 import DocumentMeta from 'react-document-meta';
 import { StoreContext, RootStore } from './stores/StoreContext';
 
-import Test from './components/Test.jsx'
+import Security from './components/Security.jsx'
 
 import logo from './logo.svg';
 import './App.css';
@@ -26,18 +26,7 @@ export default class App extends React.Component  {
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
-              <p>
-                Edit <code>src/App.js</code> and save to reload.
-              </p>
-              <Test name="World"/>
-              <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn React
-              </a>
+              <Security />
             </header>
           </div>
         </StoreContext.Provider>

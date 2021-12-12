@@ -1,17 +1,21 @@
 import { firebaseConfig } from './firebaseConfig';
-import { initializeApp }  from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
-// import auth from 'firebase/auth'; // eslint-disable-line no-unused-vars
-// import store from 'firebase/firestore'; // eslint-disable-line no-unused-vars
-// import func from 'firebase/functions'; // eslint-disable-line no-unused-vars
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
-const fire = initializeApp(firebaseConfig)
-const analytics = getAnalytics(fire);
+const fire = firebase.initializeApp(firebaseConfig).firebase;
+const auth = firebase.auth;
+const firestore = firebase.firestore();
+// const auth = getAuth();
+
+// const ui = new firebaseui.auth.AuthUI(auth);
+// const analytics = getAnalytics(fire);
+// const ui = new firebaseui.auth.AuthUI(firebase.auth());
 //const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
 //const firestore = firebase.firestore();
 //const functions = firebase.functions();
 //const settings = {};
 //firestore.settings(settings);
 
-export {fire, analytics};
+export {fire, auth, firestore};
 // export {fire, fireAnalytics, googleAuthProvider, firestore, functions};
