@@ -1,6 +1,6 @@
 // check firebase console for correct values
 const firebaseConfig = {
-  apiKey: "",
+  apiKey: "!--FIREBASE_API_KEY--!",
   authDomain: "caelus-bc5bd.firebaseapp.com",
   projectId: "caelus-bc5bd",
   storageBucket: "caelus-bc5bd.appspot.com",
