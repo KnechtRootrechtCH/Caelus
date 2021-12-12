@@ -1,5 +1,4 @@
 import { makeAutoObservable } from 'mobx';
-// import { auth } from '../config/firebase';
 import { fire, auth } from '../config/firebase';
 
 export class AuthenticationStore {
@@ -32,6 +31,7 @@ export class AuthenticationStore {
   onAuthStateChanged(user) {
     console.debug('AuthenticationStore.onAuthStateChanged()', user);
     this.user = user;
+    this.initialized = true;
   }
 
   get uid() {
