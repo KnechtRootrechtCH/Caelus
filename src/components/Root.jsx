@@ -28,8 +28,12 @@ const Root = observer (
             <CssBaseline />
             <ApplicationHeader />
             <NavigationDrawer />
-            <Container component="main">
-              <Routing />
+            <Container
+              component="main"
+              maxWidth="xl"
+              sx={{ paddingLeft: { xs: '24px', lg: '264px' }, width: '100%' }}
+              >
+                <Routing />
             </Container>
           </ThemeProvider>
         )

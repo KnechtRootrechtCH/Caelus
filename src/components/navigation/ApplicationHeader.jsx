@@ -15,20 +15,13 @@ const ApplicationHeader = observer (
     render() {
         return (
           <React.Fragment>
-            <AppBar position="static"
+            <AppBar
+              position="static"
+              color="secondary"
+              enableColorOnDark
               sx={{ zIndex: { lg: '2000', xs: '1000' }, position: 'relative' }}
               >
               <Toolbar>
-                <IconButton
-                  size="large"
-                  edge="start"
-                  color="inherit"
-                  aria-label="menu"
-                  sx={{ mr: 2, display: { md: 'flex', xs: 'none' } }}
-                  onClick={() => this.context.toggleDrawer()}
-                >
-                  <MenuIcon />
-                </IconButton>
                 <IconButton
                   size="large"
                   edge="start"
@@ -46,7 +39,7 @@ const ApplicationHeader = observer (
                   noWrap
                   sx={{ flexGrow: 1 }}
                 >
-                  Dashboard
+                  Caelus
                 </Typography>
               </Toolbar>
             </AppBar>

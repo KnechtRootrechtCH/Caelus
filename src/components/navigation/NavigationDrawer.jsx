@@ -1,9 +1,8 @@
 import React from 'react';
 import { observer } from "mobx-react"
 
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Toolbar from '@mui/material/Toolbar';
 
@@ -18,27 +17,21 @@ const NavigationDrawer = observer (
           <React.Fragment>
             { this.context.authentication.isAuthenticated &&
               <React.Fragment>
-                <Drawer
-                  sx={{ display: { lg: 'block', xs: 'none' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: this.context.drawerWidth } }}
-                  variant="persistent"
-                  open={this.context.drawer}
-                  hideBackdrop={true}
-                  onClose={() => this.context.setDrawer(false)}
+                <Box
+                  component="nav"
+                  sx={{ display: { lg: 'block', xs: 'none' }, width: { lg: this.context.drawerWidth } }}
                   >
-                  <Toolbar
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'flex-end',
-                      px: [1],
-                    }}
-                  >
-                    <IconButton onClick={() => this.context.toggleDrawer()}>
-                      <ChevronLeftIcon />
-                    </IconButton>
-                  </Toolbar>
-                  <NavigationItems />
-                </Drawer>
+                  <Drawer
+                    sx={{ display: { lg: 'block', xs: 'none' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: this.context.drawerWidth } }}
+                    variant="permanent"
+                    open={this.context.drawer}
+                    hideBackdrop={true}
+                    onClose={() => this.context.setDrawer(false)}
+                    >
+                    <Toolbar />
+                    <NavigationItems />
+                  </Drawer>
+                </Box>
                 <SwipeableDrawer
                   sx={{ display: { lg: 'none', xs: 'block' } }}
                   variant="temporary"
