@@ -13,6 +13,7 @@ import { useContext} from "react"
 import { StoreContext } from '../../stores/StoreContext';
 
 import AboutIcon from '@mui/icons-material/InfoOutlined';
+import DarkModeIcon from '@mui/icons-material/Brightness4';
 import SignoutIcon from '@mui/icons-material/Logout';
 import UserIcon from '@mui/icons-material/PermIdentity';
 
@@ -63,6 +64,12 @@ export const ApplicationHeaderAvatar = observer (() => {
     context.authentication.signOut();
   }
 
+  const handleDarkMode = () => {
+    setAnchorElement(null);
+    context.theme.toggleDarkMode();
+    context.theme.applyTheme();
+  }
+
   const photoUrl = context.authentication.user.photoURL;
   const displayName = context.authentication.user.displayName;
 
@@ -103,11 +110,17 @@ export const ApplicationHeaderAvatar = observer (() => {
         </ListItemIcon>
         <ListItemText>Profile</ListItemText>
       </MenuItem>
+      <MenuItem onClick={handleDarkMode}>
+        <ListItemIcon>
+          <DarkModeIcon fontSize="small" />
+        </ListItemIcon>
+        <ListItemText>Dark Mode: {context.theme.darkMode ? <span>On</span> : <span>Off</span>}</ListItemText>
+      </MenuItem>
       <MenuItem onClick={handleSignout}>
         <ListItemIcon>
           <SignoutIcon fontSize="small" />
         </ListItemIcon>
-        <ListItemText>Signout</ListItemText>
+        <ListItemText>SignOut</ListItemText>
       </MenuItem>
       <Divider />
       <MenuItem onClick={handleClose}>

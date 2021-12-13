@@ -9,10 +9,10 @@ export class RootStore {
   drawerMobile = false;
   drawerWidth = 240;
 
-  constructor() {
+  constructor(systemPrefersDark) {
     makeAutoObservable(this, { rootStore: false });
     this.authentication = new AuthenticationStore(this);
-    this.theme = new ThemeStore(this);
+    this.theme = new ThemeStore(this, systemPrefersDark);
     this.fire = fire;
   }
 

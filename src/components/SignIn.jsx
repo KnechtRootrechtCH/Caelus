@@ -40,7 +40,7 @@ export const SignIn = observer (() => {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
               <LockOutlinedIcon />
             </Avatar>
             <StyledFirebaseAuth uiConfig={context.authentication.uiConfig} firebaseAuth={context.fire.auth()} />

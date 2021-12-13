@@ -12,24 +12,24 @@ export class ThemeStore {
     indigo, blue, lightBlue, cyan,
     teal, green, lightGreen, lime,
     yellow, amber, orange, deepOrange ];
-  primary = red;
-  secondary = blue;
+  primary = amber;
+  secondary = indigo;
   mode = 'dark';
   theme = null;
 
-  initialized = false;
-  theme = null;
-
-  constructor(rootStore) {
+  constructor(rootStore, systemPrefersDark) {
     makeAutoObservable(this);
     this.rootStore = rootStore;
-    this.init();
+    this.setDarkMode(systemPrefersDark)
+    this.applyTheme();
   }
 
-  init() {
-    console.debug('ThemeStore.init()');
-    this.applyTheme();
-    this.initialized = true;
+  setDarkMode(darkMode) {
+    this.mode = darkMode ? 'dark' : 'light';
+  }
+
+  toggleDarkMode() {
+    this.setDarkMode(!this.darkMode);
   }
 
   applyTheme() {
@@ -40,6 +40,13 @@ export class ThemeStore {
           secondary: this.secondary,
       }
     });
-    this.initialized = true;
+  }
+
+  get darkMode() {
+    return this.mode === 'dark';
+  }
+
+  get initialized() {
+    return this.theme;
   }
 }
