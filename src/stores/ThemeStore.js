@@ -17,11 +17,9 @@ export class ThemeStore {
   mode = 'dark';
   theme = null;
 
-  constructor(rootStore, systemPrefersDark) {
+  constructor(rootStore) {
     makeAutoObservable(this);
     this.rootStore = rootStore;
-    this.setDarkMode(systemPrefersDark)
-    this.applyTheme();
   }
 
   setDarkMode(darkMode) {
