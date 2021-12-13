@@ -14,7 +14,7 @@ export class AuthenticationStore {
   init() {
     console.debug('AuthenticationStore.init()');
     this.uiConfig = {
-      signInFlow: 'popup',
+      signInFlow: 'redirect',
       signInOptions: [
         auth.GoogleAuthProvider.PROVIDER_ID,
         auth.EmailAuthProvider.PROVIDER_ID
@@ -32,6 +32,15 @@ export class AuthenticationStore {
     console.debug('AuthenticationStore.onAuthStateChanged()', user);
     this.user = user;
     this.initialized = true;
+  }
+
+  signOut() {
+    console.debug('AuthenticationStore.signOut()', this.user)
+    fire.auth().signOut().then((result) => {
+        console.debug('AuthenticationStore.signOut() : successfull');
+    }, (error) => {
+        console.error('AuthenticationStore.signOut() : failed!', error);
+    });
   }
 
   get uid() {

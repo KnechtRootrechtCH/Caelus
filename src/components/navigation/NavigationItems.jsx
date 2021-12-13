@@ -9,8 +9,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import InfoIcon from '@mui/icons-material/InfoOutlined';
-import LogoutIcon from '@mui/icons-material/Logout';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import StorageOutlinedIcon from '@mui/icons-material/StorageOutlined';
 
@@ -51,27 +49,6 @@ const NavigationItems = observer (
                       <StorageOutlinedIcon />
                     </ListItemIcon>
                     <ListItemText primary="Masterdata" />
-                  </ListItemButton>
-                </ListItem>
-              </List>
-            </nav>
-            <Divider />
-            <nav aria-label="secondary signOut about">
-              <List>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <LogoutIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="SignOut" />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <InfoIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="About" />
                   </ListItemButton>
                 </ListItem>
               </List>
