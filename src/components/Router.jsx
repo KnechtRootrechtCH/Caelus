@@ -41,7 +41,7 @@ export const Router = observer (() => {
               <Route path="about" element={<About />} />
               <Route path="profile" element={<Profile />} />
               <Route path="admin" element={isAdministrator ? <Administration /> : <NotFound />} />
-              <Route path="masterdata" element={isAdministrator ? <Masterdata /> : <NotFound />} />
+              <Route path="admin/masterdata" element={isAdministrator ? <Masterdata /> : <NotFound />} />
               <Route path="*" element={<NotFound />} />
             </Route>
             <Route path="signin" element={<SignIn />} />

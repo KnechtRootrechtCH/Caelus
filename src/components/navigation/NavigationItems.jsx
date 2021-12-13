@@ -21,9 +21,8 @@ import WarehouseIcon from '@mui/icons-material/Warehouse';
 
 export const NavigationItems = observer (() => {
   const context = useContext(StoreContext);
-  const isAdministrator = context.authentication.isAdministrator;
   const [adminOpen, setAdminOpen] = React.useState(false);
-
+  const isAdministrator = context.authentication.isAdministrator;
   const location = useLocation();
   const path = location?.pathname;
   const navigate = useNavigate();
@@ -84,7 +83,7 @@ export const NavigationItems = observer (() => {
                 <ListItem
                   disablePadding
                   onClick={() => handleNavigate('admin', true)}
-                  selected={path?.includes('/admin')}
+                  selected={path?.includes('/admin') && !path.includes('/masterdata')}
                   >
                   <ListItemButton>
                     <ListItemIcon />
@@ -93,7 +92,7 @@ export const NavigationItems = observer (() => {
                 </ListItem>
                 <ListItem
                   disablePadding
-                  onClick={() => handleNavigate('masterdata', true)}
+                  onClick={() => handleNavigate('admin/masterdata', true)}
                   selected={path?.includes('/masterdata')}
                   >
                   <ListItemButton>
