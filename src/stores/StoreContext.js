@@ -3,6 +3,8 @@ import { makeAutoObservable } from 'mobx';
 import { AuthenticationStore } from './AuthenticationStore'
 import { ThemeStore } from "./ThemeStore";
 import { fire } from '../config/firebase';
+import { ConfigurationStore } from "./ConfigurationStore";
+import { MasterdataStore } from "./MasterdataStore";
 
 export class RootStore {
   drawer = true;
@@ -15,6 +17,11 @@ export class RootStore {
     this.authentication = new AuthenticationStore(this);
     this.theme = new ThemeStore(this);
     this.fire = fire;
+  }
+
+  initFirebase() {
+    this.config = new ConfigurationStore(this);
+    this.master = new MasterdataStore(this);
   }
 
   toggleDrawer() {

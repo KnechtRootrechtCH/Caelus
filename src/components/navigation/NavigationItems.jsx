@@ -21,6 +21,7 @@ import WarehouseIcon from '@mui/icons-material/Warehouse';
 
 export const NavigationItems = observer (() => {
   const context = useContext(StoreContext);
+  const isAdministrator = context.authentication.isAdministrator;
   const [adminOpen, setAdminOpen] = React.useState(false);
 
   const location = useLocation();
@@ -69,37 +70,41 @@ export const NavigationItems = observer (() => {
             <ListItemText primary="Pledges" />
           </ListItemButton>
         </ListItem>
-        <ListItemButton onClick={handleAdminToggle}>
-          <ListItemIcon>
-            <AdminIcon />
-          </ListItemIcon>
-          <ListItemText primary="Administration" />
-          {adminOpen ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-        <Collapse in={adminOpen} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItem
-              disablePadding
-              onClick={() => handleNavigate('admin', true)}
-              selected={path?.includes('/admin')}
-              >
-              <ListItemButton>
-                <ListItemIcon />
-                <ListItemText primary="System" />
-              </ListItemButton>
-            </ListItem>
-            <ListItem
-              disablePadding
-              onClick={() => handleNavigate('masterdata', true)}
-              selected={path?.includes('/masterdata')}
-              >
-              <ListItemButton>
-                <ListItemIcon />
-                <ListItemText primary="Masterdata" />
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </Collapse>
+        { isAdministrator &&
+          <React.Fragment>
+            <ListItemButton onClick={handleAdminToggle}>
+              <ListItemIcon>
+                <AdminIcon />
+              </ListItemIcon>
+              <ListItemText primary="Administration" />
+              {adminOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={adminOpen} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItem
+                  disablePadding
+                  onClick={() => handleNavigate('admin', true)}
+                  selected={path?.includes('/admin')}
+                  >
+                  <ListItemButton>
+                    <ListItemIcon />
+                    <ListItemText primary="System" />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem
+                  disablePadding
+                  onClick={() => handleNavigate('masterdata', true)}
+                  selected={path?.includes('/masterdata')}
+                  >
+                  <ListItemButton>
+                    <ListItemIcon />
+                    <ListItemText primary="Masterdata" />
+                  </ListItemButton>
+                </ListItem>
+              </List>
+            </Collapse>
+          </React.Fragment>
+        }
       </List>
       <Divider />
       <List component="nav" aria-label="main hangar pledges administration masterdata settings">

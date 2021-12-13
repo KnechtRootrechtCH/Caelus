@@ -4,6 +4,7 @@ import { fire, auth } from '../config/firebase';
 export class AuthenticationStore {
   initialized = false;
   user = null;
+  isAdministrator = false;
 
   constructor(rootStore) {
     makeAutoObservable(this);
@@ -30,10 +31,17 @@ export class AuthenticationStore {
   onAuthStateChanged(user) {
     this.user = user;
     this.initialized = true;
+    if (this.isAuthenticated) {
+      this.rootStore.initFirebase();
+    }
+  }
+
+  checkPrivilages(administrators) {
+    this.isAdministrator = administrators?.includes(this.uid);
   }
 
   signOut() {
-    console.debug('AuthenticationStore.signOut()', this.user)
+    console.debug('AuthenticationStore.signOut()', this.user);
     fire.auth().signOut().then((result) => {
         console.debug('AuthenticationStore.signOut() : successfull');
     }, (error) => {

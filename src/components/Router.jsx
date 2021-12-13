@@ -23,6 +23,7 @@ import { SignIn} from './pages/SignIn';
 
 export const Router = observer (() => {
   const context = useContext(StoreContext);
+  const isAdministrator = context.authentication.isAdministrator;
   const theme = context.theme.theme;
   const initialized = context.initialized;
   const authenticated = context.authentication.isAuthenticated;
@@ -39,8 +40,8 @@ export const Router = observer (() => {
               <Route path="pledges" element={<Pledges />} />
               <Route path="about" element={<About />} />
               <Route path="profile" element={<Profile />} />
-              <Route path="masterdata" element={<Masterdata />} />
-              <Route path="admin" element={<Administration />} />
+              <Route path="admin" element={isAdministrator ? <Administration /> : <NotFound />} />
+              <Route path="masterdata" element={isAdministrator ? <Masterdata /> : <NotFound />} />
               <Route path="*" element={<NotFound />} />
             </Route>
             <Route path="signin" element={<SignIn />} />
