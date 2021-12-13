@@ -8,6 +8,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
 import { StoreContext } from '../../stores/StoreContext';
+import ApplicationHeaderAvatar from './ApplicationHeaderAvatar';
 
 const ApplicationHeader = observer (
   class ApplicationHeader extends React.Component {
@@ -41,6 +42,9 @@ const ApplicationHeader = observer (
                 >
                   Caelus
                 </Typography>
+                { this.context.authentication.isAuthenticated &&
+                  <ApplicationHeaderAvatar />
+                }
               </Toolbar>
             </AppBar>
 
