@@ -2,8 +2,9 @@ import React from 'react';
 import DocumentMeta from 'react-document-meta';
 import { useMediaQuery } from 'react-responsive'
 import { StoreContext, RootStore } from './stores/StoreContext';
+import { BrowserRouter } from "react-router-dom";
 
-import { Root } from './components/Root.jsx'
+import { Rooter } from './components/Rooter.jsx'
 
 import './App.css';
 
@@ -29,7 +30,9 @@ export default function App() {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <StoreContext.Provider value={ new RootStore(systemPrefersDark) }>
-          <Root/>
+          <BrowserRouter>
+            <Rooter/>
+          </BrowserRouter>
         </StoreContext.Provider>
       </DocumentMeta>
     );

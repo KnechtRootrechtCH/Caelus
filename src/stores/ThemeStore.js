@@ -12,8 +12,8 @@ export class ThemeStore {
     indigo, blue, lightBlue, cyan,
     teal, green, lightGreen, lime,
     yellow, amber, orange, deepOrange ];
-  primary = amber;
-  secondary = indigo;
+  primary = indigo;
+  secondary = orange;
   mode = 'dark';
   theme = null;
 

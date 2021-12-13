@@ -10,7 +10,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import { useContext} from "react"
-import { StoreContext } from '../stores/StoreContext';
+import { StoreContext } from '../../stores/StoreContext';
 
 export const SignIn = observer (() => {
   const context = useContext(StoreContext)

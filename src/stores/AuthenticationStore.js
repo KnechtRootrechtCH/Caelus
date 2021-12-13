@@ -14,7 +14,7 @@ export class AuthenticationStore {
   init() {
     console.debug('AuthenticationStore.init()');
     this.uiConfig = {
-      signInFlow: 'redirect',
+      signInFlow: 'popup',
       signInOptions: [
         auth.GoogleAuthProvider.PROVIDER_ID,
         auth.EmailAuthProvider.PROVIDER_ID
