@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from "mobx-react"
-import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
@@ -20,54 +20,50 @@ export const NavigationItems = observer (() => {
 
   return (
     <React.Fragment>
-      <nav aria-label="main hangar pledges">
-        <List>
-          <ListItem
-            disablePadding
-            onClick={() => navigate('hangar')}
-            to='/hangar'
-            selected={path?.includes('/hangar')}
-            >
-            <ListItemButton>
-              <ListItemIcon>
-                <WarehouseIcon />
-              </ListItemIcon>
-              <ListItemText primary="Hangar" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem
-            disablePadding
-            onClick={() => navigate('pledges')}
-            to='/pledges'
-            selected={path?.includes('/pledges')}
-            >
-            <ListItemButton>
-              <ListItemIcon>
-                <AssignmentIcon />
-              </ListItemIcon>
-              <ListItemText primary="Pledges" />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </nav>
-      <Divider />
-      <nav aria-label="administration masterdata">
-        <List>
+      <List component="nav" aria-label="main hangar pledges">
         <ListItem
           disablePadding
-          onClick={() => navigate('masterdata')}
-          to='/masterdata'
-          selected={path?.includes('/masterdata')}
+          onClick={() => navigate('hangar')}
+          to='/hangar'
+          selected={path?.includes('/hangar')}
           >
-            <ListItemButton>
-              <ListItemIcon>
-                <StorageOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Masterdata" />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </nav>
+          <ListItemButton>
+            <ListItemIcon>
+              <WarehouseIcon />
+            </ListItemIcon>
+            <ListItemText primary="Hangar" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem
+          disablePadding
+          onClick={() => navigate('pledges')}
+          to='/pledges'
+          selected={path?.includes('/pledges')}
+          >
+          <ListItemButton>
+            <ListItemIcon>
+              <AssignmentIcon />
+            </ListItemIcon>
+            <ListItemText primary="Pledges" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <Divider />
+      <List component="nav" aria-label="administration masterdata">
+      <ListItem
+        disablePadding
+        onClick={() => navigate('masterdata')}
+        to='/masterdata'
+        selected={path?.includes('/masterdata')}
+        >
+          <ListItemButton>
+            <ListItemIcon>
+              <StorageOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Masterdata" />
+          </ListItemButton>
+        </ListItem>
+      </List>
     </React.Fragment>
   )
 })

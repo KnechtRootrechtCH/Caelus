@@ -1,5 +1,8 @@
 import React from 'react';
 import { observer } from "mobx-react"
+import { useNavigate } from 'react-router-dom'
+import { useContext} from "react"
+import { StoreContext } from '../../stores/StoreContext';
 
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
@@ -8,9 +11,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
-import { useContext} from "react"
-import { StoreContext } from '../../stores/StoreContext';
 
 import AboutIcon from '@mui/icons-material/InfoOutlined';
 import DarkModeIcon from '@mui/icons-material/Brightness4';
@@ -21,6 +21,7 @@ import UserIcon from '@mui/icons-material/PermIdentity';
 export const ApplicationHeaderAvatar = observer (() => {
   const context = useContext(StoreContext)
   const [anchorElement, setAnchorElement] = React.useState(null);
+  const navigate = useNavigate();
 
   const stringToColor = (string) => {
     let hash = 0;
@@ -59,13 +60,18 @@ export const ApplicationHeaderAvatar = observer (() => {
     setAnchorElement(null);
   };
 
+  const handleNavigate = (path) => {
+    handleClose();
+    navigate(path);
+  }
+
   const handleSignout = () => {
-    setAnchorElement(null);
+    handleClose();
     context.authentication.signOut();
   }
 
   const handleDarkMode = () => {
-    setAnchorElement(null);
+    handleClose();
     context.theme.toggleDarkMode();
     context.theme.applyTheme();
   }
@@ -104,30 +110,31 @@ export const ApplicationHeaderAvatar = observer (() => {
         open={Boolean(anchorElement)}
         onClose={handleClose}
       >
-      <MenuItem onClick={handleClose}>
+      <MenuItem onClick={() => handleNavigate('profile')}>
         <ListItemIcon>
           <UserIcon fontSize="small" />
         </ListItemIcon>
         <ListItemText>Profile</ListItemText>
       </MenuItem>
+      <MenuItem onClick={() => handleNavigate('about')}>
+        <ListItemIcon>
+          <AboutIcon fontSize="small" />
+        </ListItemIcon>
+        <ListItemText>About</ListItemText>
+      </MenuItem>
+      <Divider />
       <MenuItem onClick={handleDarkMode}>
         <ListItemIcon>
           <DarkModeIcon fontSize="small" />
         </ListItemIcon>
         <ListItemText>Dark Mode: {context.theme.darkMode ? <span>On</span> : <span>Off</span>}</ListItemText>
       </MenuItem>
+      <Divider />
       <MenuItem onClick={handleSignout}>
         <ListItemIcon>
           <SignoutIcon fontSize="small" />
         </ListItemIcon>
         <ListItemText>SignOut</ListItemText>
-      </MenuItem>
-      <Divider />
-      <MenuItem onClick={handleClose}>
-        <ListItemIcon>
-          <AboutIcon fontSize="small" />
-        </ListItemIcon>
-        <ListItemText>About</ListItemText>
       </MenuItem>
   </Menu>
   </React.Fragment>
