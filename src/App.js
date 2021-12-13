@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive'
 import { StoreContext, RootStore } from './stores/StoreContext';
 import { BrowserRouter } from "react-router-dom";
 
-import { Rooter } from './components/Rooter.jsx'
+import { Router } from './components/Router.jsx'
 
 import './App.css';
 
@@ -31,7 +31,7 @@ export default function App() {
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <StoreContext.Provider value={ new RootStore(systemPrefersDark) }>
           <BrowserRouter>
-            <Rooter/>
+            <Router/>
           </BrowserRouter>
         </StoreContext.Provider>
       </DocumentMeta>

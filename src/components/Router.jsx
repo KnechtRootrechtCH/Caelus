@@ -11,6 +11,7 @@ import Initializing from './Initializing';
 import { Layout} from './Layout';
 
 import { About } from './pages/About';
+import { Administration } from './pages/Administration';
 import { Hangar } from './pages/Hangar';
 import { NotFound } from './pages/NotFound';
 import { Masterdata } from './pages/Masterdata';
@@ -20,7 +21,7 @@ import { SignIn} from './pages/SignIn';
 
 
 
-export const Rooter = observer (() => {
+export const Router = observer (() => {
   const context = useContext(StoreContext);
   const theme = context.theme.theme;
   const initialized = context.initialized;
@@ -39,6 +40,7 @@ export const Rooter = observer (() => {
               <Route path="about" element={<About />} />
               <Route path="profile" element={<Profile />} />
               <Route path="masterdata" element={<Masterdata />} />
+              <Route path="admin" element={<Administration />} />
               <Route path="*" element={<NotFound />} />
             </Route>
             <Route path="signin" element={<SignIn />} />

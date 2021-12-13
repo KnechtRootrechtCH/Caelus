@@ -2,6 +2,7 @@ import React from 'react';
 import { observer } from "mobx-react"
 import { useLocation, useNavigate } from 'react-router-dom'
 
+import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -9,22 +10,40 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
+import AboutIcon from '@mui/icons-material/InfoOutlined';
+import AdminIcon from '@mui/icons-material/Settings';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
-import StorageOutlinedIcon from '@mui/icons-material/StorageOutlined';
 
 export const NavigationItems = observer (() => {
+  const [adminOpen, setAdminOpen] = React.useState(false);
+
   const location = useLocation();
   const path = location?.pathname;
   const navigate = useNavigate();
 
+  const handleAdminToggle = () => {
+    if (!adminOpen) {
+      navigate('admin');
+    }
+    setAdminOpen(!adminOpen);
+  }
+
+  const handleNavigate = (path, isAdmin) => {
+    navigate(path);
+    if (!isAdmin) {
+      setAdminOpen(false);
+    }
+  }
+
   return (
     <React.Fragment>
-      <List component="nav" aria-label="main hangar pledges">
+      <List component="nav" aria-label="main hangar pledges administration masterdata settings">
         <ListItem
           disablePadding
-          onClick={() => navigate('hangar')}
-          to='/hangar'
+          onClick={() => handleNavigate('hangar')}
           selected={path?.includes('/hangar')}
           >
           <ListItemButton>
@@ -36,8 +55,7 @@ export const NavigationItems = observer (() => {
         </ListItem>
         <ListItem
           disablePadding
-          onClick={() => navigate('pledges')}
-          to='/pledges'
+          onClick={() => handleNavigate('pledges')}
           selected={path?.includes('/pledges')}
           >
           <ListItemButton>
@@ -47,20 +65,50 @@ export const NavigationItems = observer (() => {
             <ListItemText primary="Pledges" />
           </ListItemButton>
         </ListItem>
+        <ListItemButton onClick={handleAdminToggle}>
+          <ListItemIcon>
+            <AdminIcon />
+          </ListItemIcon>
+          <ListItemText primary="Administration" />
+          {adminOpen ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={adminOpen} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItem
+              disablePadding
+              onClick={() => handleNavigate('admin', true)}
+              selected={path?.includes('/admin')}
+              >
+              <ListItemButton>
+                <ListItemIcon />
+                <ListItemText primary="System" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem
+              disablePadding
+              onClick={() => handleNavigate('masterdata', true)}
+              selected={path?.includes('/masterdata')}
+              >
+              <ListItemButton>
+                <ListItemIcon />
+                <ListItemText primary="Masterdata" />
+              </ListItemButton>
+            </ListItem>
+          </List>
+        </Collapse>
       </List>
       <Divider />
-      <List component="nav" aria-label="administration masterdata">
-      <ListItem
-        disablePadding
-        onClick={() => navigate('masterdata')}
-        to='/masterdata'
-        selected={path?.includes('/masterdata')}
-        >
+      <List component="nav" aria-label="main hangar pledges administration masterdata settings">
+        <ListItem
+          disablePadding
+          onClick={() => handleNavigate('about')}
+          selected={path?.includes('/about')}
+          >
           <ListItemButton>
             <ListItemIcon>
-              <StorageOutlinedIcon />
+              <AboutIcon />
             </ListItemIcon>
-            <ListItemText primary="Masterdata" />
+            <ListItemText primary="About" />
           </ListItemButton>
         </ListItem>
       </List>

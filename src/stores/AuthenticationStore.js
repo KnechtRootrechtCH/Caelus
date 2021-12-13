@@ -12,7 +12,6 @@ export class AuthenticationStore {
   }
 
   init() {
-    console.debug('AuthenticationStore.init()');
     this.uiConfig = {
       signInFlow: 'popup',
       signInOptions: [
@@ -29,7 +28,6 @@ export class AuthenticationStore {
   }
 
   onAuthStateChanged(user) {
-    console.debug('AuthenticationStore.onAuthStateChanged()', user);
     this.user = user;
     this.initialized = true;
   }
