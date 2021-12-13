@@ -28,7 +28,7 @@ export const ApplicationHeader = observer (() => {
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 2, display: { md: 'none', xs: 'flex' } }}
+              sx={{ mr: 2, display: { lg: 'none', xs: 'flex' } }}
               onClick={() => context.toggleDrawerMobile()}
             >
               <MenuIcon />

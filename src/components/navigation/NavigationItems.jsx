@@ -1,6 +1,8 @@
 import React from 'react';
-import { observer } from "mobx-react"
-import { useLocation, useNavigate } from 'react-router-dom'
+import { observer } from "mobx-react";
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useContext} from "react";
+import { StoreContext } from '../../stores/StoreContext';
 
 import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
@@ -18,6 +20,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 
 export const NavigationItems = observer (() => {
+  const context = useContext(StoreContext);
   const [adminOpen, setAdminOpen] = React.useState(false);
 
   const location = useLocation();
@@ -36,6 +39,7 @@ export const NavigationItems = observer (() => {
     if (!isAdmin) {
       setAdminOpen(false);
     }
+    context.setDrawerMobile(false);
   }
 
   return (
