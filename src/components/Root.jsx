@@ -6,9 +6,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 
 import { StoreContext } from '../stores/StoreContext';
-import Header from './Header';
+import ApplicationHeader from './navigation/ApplicationHeader';
 import Initializing from './Initializing';
-import Navigation from './Navigation';
+import NavigationDrawer from './navigation/NavigationDrawer';
 import Routing from './Routing';
 
 const Root = observer (
@@ -17,7 +17,7 @@ const Root = observer (
     render() {
       const theme = this.context.theme.theme;
 
-      if (!this.context.authentication.initialized || !this.context.theme.initialized) {
+      if (!this.context.initialized) {
         return (
           <Initializing />
         )
@@ -26,8 +26,8 @@ const Root = observer (
         return (
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Header />
-            <Navigation />
+            <ApplicationHeader />
+            <NavigationDrawer />
             <Container component="main">
               <Routing />
             </Container>

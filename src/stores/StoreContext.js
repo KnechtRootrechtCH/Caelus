@@ -31,6 +31,10 @@ export class RootStore {
   setDrawerMobile(state) {
     this.drawerMobile = state;
   }
+
+  get initialized() {
+    return this.authentication.initialized && this.theme.initialized;
+  }
 }
 
 export const StoreContext = createContext(null);
